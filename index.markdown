@@ -10,7 +10,7 @@ permalink: /
 
 <img class="right" src="/images/NYC_CP_Sitting.jpg" alt="Me, NYC" title="Central Park, NYC during my trip to Boston for GECCO '22 conference" />
 
-# Anant Saxena
+# Hi, I'm Anant Saxena.
 
 I'm a final year CS undergraduate at [Indian Institute of Technology, (BHU) Varanasi](https://iitbhu.ac.in/). I'm a backend dev who likes building customer-facing products that scale super good [(just like this.)](https://github.com/anantsxna/redis-rdb-compare)
 
@@ -24,4 +24,4 @@ Since COVID times, I've felt compelled to learn about the market and trading dur
 
 <!-- add a paragraph break -->
 
-I'm Anant. Hi &#128075;
+Please, reach out if you have any questions or would like to discuss potential opportunities.
