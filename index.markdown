@@ -8,7 +8,14 @@ permalink: /
 ---
 
 
-<img class="right" src="/images/NYC_CP_Sitting.jpg" alt="Me, NYC" title="Central Park, NYC during my trip to Boston for GECCO '22 conference" />
+<img class="right"
+     src="/images/NYC_CP_Sitting.jpg"
+     srcset="/images/NYC_CP_Sitting-280w.jpg 280w,
+             /images/NYC_CP_Sitting-560w.jpg 560w"
+     sizes="(max-width: 600px) 280px, 560px"
+     alt="A person sitting in Central Park, New York City"
+     title="Central Park, NYC during my trip to Boston for GECCO '22 conference">
+
 
 # Hi, I'm Anant Saxena.
 
