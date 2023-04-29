@@ -1,0 +1,87 @@
+@import "site-defaults.scss";
+
+.timeline {
+    list-style: none;
+    padding: 0;
+    position: relative;
+    margin-top: 20px;
+}
+
+.timeline li {
+    // margin-bottom: 50px;
+    padding-left: 40px;
+    position: relative;
+    margin-bottom: 0%;
+}
+
+// white circle
+.timeline li:before {
+    content: "";
+    background: $white;
+    display: block;
+    position: absolute;
+    left: 0;
+    top: 34px;
+    margin-top: -10px;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    z-index: 1;
+
+    // for orange dashed line
+    border: 3px solid $dark-orange;
+    box-sizing: border-box;
+    padding: 4px;
+    background-clip: padding-box;
+}
+
+// orange line
+.timeline li:after {
+    content: "";
+    display: block;
+    position: absolute;
+    left: 10px;
+    top: 0;
+    bottom: 0;
+    width: 3px;
+    margin-left: -1px;
+    z-index: 0;
+    
+    border: 2px dashed #f9c66a;
+    border-left: none;
+    border-right: none;
+    background: #f9c66a;
+    border-radius: 5px;
+}
+
+.timeline-content {
+    position: relative;
+    width: 100%;
+    padding: 10px;
+    background: $white;
+    // box-shadow: 0 2px 4px $shadow; 
+    // no shadow needed I feel
+}
+
+.timeline-content h2 {
+    margin-top: 0;
+    color: $darkgray;
+}
+
+.timeline-content h3 {
+    margin-top: 0;
+    color: $dark-orange;
+}
+
+.timeline-content p {
+    // margin: 20px 0;
+    font-size: 1em;
+    line-height: 1.5;
+}
+
+.date {
+    display: block;
+    margin-top: 20px;
+    font-size: 1em;
+    color: $gray;
+}

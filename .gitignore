@@ -7,3 +7,5 @@ vendor
 .vscode
 
 _ignore
+
+.DS_Store

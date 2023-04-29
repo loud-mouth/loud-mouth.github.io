@@ -1,0 +1,23 @@
+- job_title: Alpha Developer
+  employer_name: WorldQuant BRAIN
+  job_description: Developed Alpha trading models for financial instruments using dataset analysis and investment strategies.
+  start_date: Oct 2022
+  end_date: Present
+
+- job_title: Product Engineer Intern
+  employer_name: Sprinklr
+  job_description: Created a Java-based Slack bot that supports queries on large Redis databases without invoking Redis clients. Deployed on company servers via Kubernetes.
+  start_date: May 2022
+  end_date: July 2022
+
+- job_title: Full Stack Intern
+  employer_name: Sogage
+  job_description: Built Reactive components and Django backend pipeline for auto-refreshing social media feed.
+  start_date: Feb 2022
+  end_date: April 2022
+
+- job_title: Problem Writer
+  employer_name: Hackerrank
+  job_description: Created advanced data structures and algorithms based problems for the Hackerrank platform.
+  start_date: Feb 2022
+  end_date: Present
