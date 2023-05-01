@@ -31,5 +31,3 @@ I'm currently working on my Bachelor's research paper under [Dr. S.K. Singh](htt
 
 ## About me
 I learnt programming from mostly my friends and I am always keen on returning the favour. Those moments have made for the fondest of my college memories.
-<br>
-I am still figuring out what I want to do and I hope I never feel it's too late to think like that.
