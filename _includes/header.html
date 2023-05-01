@@ -1,0 +1,43 @@
+<div id="menu">
+    {% if page.url == '/' %}
+    <div class="site-title">Anant Saxena</div>
+    {% else %}
+    <div class="site-title"><a href="/">Anant Saxena</a></div>
+    {% endif %}
+
+    <ul class="links no-print">
+      <li>
+        {% if page.url == '/' %}<b>Home</b>{% else %}<a
+          href="/"
+          title="Go to the home page"
+          >Home</a
+        >{% endif %}
+      </li>
+      <li>
+        {% if page.url == '/cv/' %}<b>Resume/CV</b>{% else %}<a
+          href="/cv/"
+          title="Go to my Resume/CV"
+          >Resume/CV</a
+        >{% endif %}
+      </li>
+      <li>
+        {% if page.url == '/projects/' %}<b>Projects</b>{% else %}<a
+          href="/projects/"
+          title="Projects I&#39;ve authored"
+          >Projects</a
+        >{% endif %}
+      </li>
+      <li>
+        <a href="mailto:anantsaxena.official@gmail.com" title="Email me"
+          >Email</a
+        >
+      </li>
+    </ul>
+
+    <ul class="links print-only">
+      <li>
+        <a href="https://loud-mouth.github.io/">loud-mouth.github.io</a>
+      </li>
+      <li><a href="mailto:anantsaxena.official@gmail.com">Email Me</a></li>
+    </ul>
+  </div>
