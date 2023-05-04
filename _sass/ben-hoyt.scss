@@ -239,18 +239,38 @@ h2 {
     font-size: 80%;
     display: flex;
     justify-content: space-between;
+    // flex-wrap: wrap;
   }
-
-  .footer-left {
+  .footer-details-box {
     display: flex;
     flex-direction: column;
   }
   
-  .footer-right {
+  .footer-icons-box {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
   }
+
+  @media screen and (max-width: 700px) {
+        .footer {
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        // in phone screens, put icons above details
+        .footer-icons-box {
+            align-items: center;
+            order: 1;
+        }
+
+        .footer-details-box {
+            // justify-content: center;
+            align-items: center;
+            order: 2;
+        }
+    }
+
 
   .no-dot-below-link {
     border-bottom: none !important;
