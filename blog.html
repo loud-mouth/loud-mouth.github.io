@@ -4,11 +4,16 @@ title: Blog
 ---
 <h1>Latest Posts</h1>
 
-<ul>
+<ul class = "blogs-content">
   {% for post in site.posts %}
-    <li>
-      <h2><a href="{{ post.url }}">{{ post.title }}</a></h2>
-      {{ post.excerpt }}
+  <li>
+        <div class="blog-">
+            <h2 class = "blog-links"><a href="{{ post.url }}">{{ post.title }}</a></h2>
+            <p class = "blog-exerpts">
+              {{ post.excerpt }}
+            </p>
+        </div>
     </li>
+    
   {% endfor %}
 </ul>

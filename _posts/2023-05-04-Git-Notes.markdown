@@ -1,0 +1,23 @@
+---
+layout: post
+author: anant
+---
+
+Today I'll be covering the basic ins and outs of git that I have personally become accustomed to.
+
+As far as I understand, while working on a personal projects, there will be 3 versions at a time, your local version of the branch you are working on, a remote server version of the branch on git servers and a copy of that remote branch on your local computer that may or may not be up-to-date with the remote server branch.
+
+## What is Git Remote
+The git remote command lets you create, view, and delete connections to other repositories. Remote connections are more like bookmarks rather than direct links into other repositories.
+
+They are convinient names that can be used to reference a not-so-convinient URL.
+You can make remote connections to the central repo, as well as to a friend's repo.
+
+The `git remote` command is used to manage the list of remote entries stored in `./.git/config` file.
+The command `git remote -v` can be used to check the list, and see which URLs are pointed to by them.
+
+### Creating an entry in `./.git/config` file
+
+Use `git remote add <name> <url>` to add a link.
+
+When you clone a repository using the git clone command, Git automatically adds a remote named origin that points to the repository you just cloned. By default, the origin remote points to the repository that you cloned from, and it is used as the default remote for fetching and pushing changes. When you run Git commands that reference origin, such as git fetch origin or git push origin, Git knows to use the URL of the remote repository that you cloned from. You can remove and rename these connections.
