@@ -1,6 +1,6 @@
 ---
 layout: post
-author: anant
+author: Anant
 ---
 
 Today I'll be covering the basic ins and outs of git that I have personally become accustomed to.

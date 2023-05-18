@@ -1,0 +1,40 @@
+@import "site-defaults";
+
+
+
+.blog-card {
+    margin: 20px auto;
+    padding: 20px;
+    border: none;
+    border-radius: 10px;
+    background-color: white;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+}
+
+.blog-card:hover {
+    transform: translateY(-5px);
+}
+
+.blog-title {
+    font-size: 24px;
+    color: $orange;
+    margin-bottom: 10px;
+    text-align: center;
+  }
+  
+  .blog-excerpts {
+    font-size: 16px;
+    color: $dark-brown;
+    margin-bottom: 0;
+  }
+  
+  a.blog-card :hover{
+    text-decoration: underline;
+  }
+  
+  ul.blog-content {
+    list-style: none;
+    padding: 0;
+  }
+  
