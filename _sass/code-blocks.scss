@@ -1,0 +1,72 @@
+
+.pre-container {
+    padding: 15px;                  /* Padding around the code */
+    border: 1px solid #ccc;         /* Border around the code block */
+    border-radius: 5px;             /* Rounded corners */
+    font-family: "Courier New", monospace;  /* Font family for the code */
+    position: relative;             /* Create a relative positioning context */
+    display: flex;
+    flex-wrap: wrap;
+    overflow-x: scroll;
+}
+
+.highlighter-rouge {
+    width: 95%;
+}
+
+pre {
+    // counter-reset: linenumber;  /* Reset the line number counter */
+    background-color: #f5f5f5;      /* Background color of the code block */
+    font-size: 14px;                /* Font size for the code */
+    line-height: 1.5;               /* Line height for the code */
+    overflow-x: auto;               /* Enable horizontal scrolling for long lines */
+    position: relative;
+}
+
+.button-container {
+    width: 5%;
+    position: absolute;
+    top: 0.5rem;
+    right: 0.5rem;
+    height: 2.3rem;
+    width: 2.3rem;
+    display: flex !important;
+    align-items: stretch !important;
+}
+
+    
+  .copy-button {
+    // position: relative;             /* Position the copy button absolutely */
+    // top: 0.5rem;                    /* Adjust the vertical position of the button */
+    // right: 0.5rem;                  /* Adjust the horizontal position of the button */
+    width: 2.3rem;                  /* Adjust the width as needed */
+    height: 2.3rem;                 /* Adjust the height as needed */
+    font-size: 1.25rem;             /* Adjust the font size as needed */
+    transition: background-color 0.2s; /* Add transition for background-color only */
+    justify-content: center;
+
+    background-color: $dark-orange;
+    color: white;
+    border: none;
+    border-radius: 4px;
+
+    cursor: pointer;
+  }
+
+.copy-button.disabled {
+    background-color: white !important;
+    color: $orange !important;
+    border-radius: 4px;
+    border: 1px solid;
+    
+    cursor: default;
+}
+  
+  .copy-button:active:not(.disabled) {
+    transform: translateY(2px);     /* Move the button down when pressed, exclude translation when button is disabled */
+}
+  
+pre code::after {
+  content: '';                  /* Create a line break before and after the code block */
+  white-space: pre-wrap;
+}
