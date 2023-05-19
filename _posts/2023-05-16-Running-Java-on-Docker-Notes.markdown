@@ -44,14 +44,14 @@ Use `docker run -it my-gradle-image:latest` to create the container from the ima
 ### Java (Gradle) + Docker
 To run a java gradle project, we should first compress the compiled `.class` files. A good way to do that is to make a `.jar` file. After that the jar file can be run by a JVM like this:
 
-```
-    java -jar build/libs/<project_name>-0.0.1-SNAPSHOT-plain.jar 
-```
+{% assign code_content = "java -jar build/libs/<project_name>-0.0.1-SNAPSHOT-plain.jar" %}
+{% assign code_language = "shell" %}
+{% include codeblocks.html content=code_content language=code_language %}
+
 
 Here is an example of a Dockerfile that runs a Jar file of a gradle project:
 
-```
-FROM gradle:7.2.0-jdk17
+{% include codeblocks.html content="FROM gradle:7.2.0-jdk17 
 
 WORKDIR /app
 
@@ -59,9 +59,7 @@ COPY . .
 
 RUN ./gradlew clean build
 
-CMD ["java", "-jar", "build/libs/gradle-with-docker-0.0.1-SNAPSHOT.jar"]
-```
-
+CMD [java', '-jar', 'build/libs/gradle-with-docker-0.0.1-SNAPSHOT.jar\']" language="docker" %}
 
 But first the jar file needs to be built. We can accomplish this via command line as well as Intellij IDEA's built-in run build tasks. 
 
@@ -72,23 +70,20 @@ Left clicking on the `build.gradle` file, we can set some properties of the diff
 
 Add this code to the `build.gradle` file: 
 
-```
-jar {
+{% include codeblocks.html content="jar {
     manifest {
         attributes(
                 'Class-Path': configurations.runtimeClasspath.files.collect { it.getName() }.join(' '),
                 'Main-Class': 'com.example.gradlewithdocker.GradleWithDockerApplication'
         )
     }
-}
-```
+}" language="groovy" %}
 
 Another error is that once the .jar file is made, Intellij does not automatically packaage in the dependencies of your project as well inside the .jar. A 'fat jar' (also known as uber-jar) is the term used to describe a .jar file that also has all the dependencies packaged in as well.
 In maven you can make a fat jar by including the following dependency in `pom.xml`:
 
 #### Code for Maven (*unchecked)
-```
-<plugin>
+{% include codeblocks.html content="<plugin>
   <groupId>org.apache.maven.plugins</groupId>
   <artifactId>maven-jar-plugin</artifactId>
   <configuration>
@@ -98,28 +93,24 @@ In maven you can make a fat jar by including the following dependency in `pom.xm
       </manifest>
     </archive>
   </configuration>
-</plugin>
-```
-
+</plugin>" language="xml" %}
 
 In gradle, there are 3 options: either use the guavas (google's open source collection of java classes), or use a gradle based plugin like the `Shadow` plugin or create a separate task in `build.gradle` like this:
 
 #### Code for guavas
-```
-plugins {
+{% include codeblocks.html content="plugins {
     id 'java'
     id 'org.springframework.boot' version '3.0.6'
     id 'io.spring.dependency-management' version '1.1.0'
 }
 
 apply plugin: 'java'
-apply plugin: 'com.github.johnrengelman.shadow'
-```
+apply plugin: 'com.github.johnrengelman.shadow'" language="groovy" %}
+
 Note that the snapshot will be created with the '-all' suffix. Conifgurations of the Gradle type can be set up with the shadowJar command.
 
 #### Code for separate task (checked)
-```
-task fatJar(type: Jar) {
+{% include codeblocks.html content="task fatJar(type: Jar) {
     manifest {
         attributes 'Implementation-Title': 'Gradle Jar File Example',
                 'Main-Class': 'com.example.gradlewithdocker.GradleWithDockerApplication'
@@ -127,8 +118,8 @@ task fatJar(type: Jar) {
     duplicatesStrategy = DuplicatesStrategy.EXCLUDE
     from { configurations.runtimeClasspath.collect { it.isDirectory() ? it : zipTree(it) } }
     with jar
-}
-```
+}" language="groovy" %}
+
 (IMPORTANT: Note that this fatJar task can later be used from Intellij's run configurations. Also, note the use of duplicateStrategy keyword.)
 
 Guavas is a library that provides a number of utility classes and methods. It can be used to simplify common tasks, such as working with collections, strings, and I/O.
