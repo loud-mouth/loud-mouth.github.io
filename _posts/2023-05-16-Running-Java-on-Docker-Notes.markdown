@@ -133,7 +133,3 @@ If you are only using a few dependencies, then using Guavas may be the better op
 Technically, no, what we can do instead is to keep a simple image and load up a volume into whatever container and execute commands on it by accessing its terminal.
 
 So far I have not properly tried this approach because the base image I have been loading (gradle:7.2.0-jdk17) requires that a gradle project must be loaded in through Dockerfile, so before container creation. I cannot do that because my code is going to be mounted as a volume during container creation.
-
-
-## Intellij IDEA Things
-In Intellij IDEA the run configurations menu for gradle projects has a field for specifying the command that will be run.
