@@ -4,6 +4,15 @@ author: Anant
 ---
 Because once my mentor said, "Maven? Can't you convert this into Gradle real quick?"
 
+<blockquote>
+ <p class="no-print"><b>Go to:</b>
+  <a href="#the-file-structure-of-a-gradle-project">File Structure in Gradle</a> |
+  <a href="#depedencies-plugins-and-what-else">Dependencies & Plugins</a> |
+  <a href="#project-lombok-integration-with-gradle">Lombok + Gradle</a> |
+  <a href="#spotless---prettier-for-java-integration-with-gradle">Spotless + Gradle</a>
+ </p>
+</blockquote>
+
 ### The file structure of a Gradle project
 `build.gradle`: This file is the heart of a Gradle project. It defines the project configuration, dependencies, and build tasks using the Groovy or Kotlin DSL (Domain-Specific Language). It specifies the plugins to apply, repositories for dependency resolution, task definitions, and various project settings.
 
@@ -135,3 +144,5 @@ The following properties were set for formatter in the `build.gradle` file.
 }" language="groovy" %}
 
 Some sources mention to put the config in a separate `spotless.build` file but for me it was not working.
+
+<!-- TODO: Add JUnit for Gradle -->

@@ -21,3 +21,35 @@ The command `git remote -v` can be used to check the list, and see which URLs ar
 Use `git remote add <name> <url>` to add a link.
 
 When you clone a repository using the git clone command, Git automatically adds a remote named origin that points to the repository you just cloned. By default, the origin remote points to the repository that you cloned from, and it is used as the default remote for fetching and pushing changes. When you run Git commands that reference origin, such as git fetch origin or git push origin, Git knows to use the URL of the remote repository that you cloned from. You can remove and rename these connections.
+
+
+## Git Stash
+Working on 2 branches simultaneously means you'll have to switch back and forth between them sometimes. Here's how to do it.
+
+With `git stash` you can save your current progress in branch, which is something you're required to do before switching to a different branch. Use `git stash pop` to unstash the changes later when you come back.
+
+## For correcting your mistakes
+### For when you've committed too early (but not pushed) 
+In this case, you can keep making further edits in the same branch and at the end stage the current changes with `git add .` and use `git commit --amend` with new commit message to bundle all the changes together into a single commit.
+
+### Wait, you also pushed?
+If you have pushed the partial changes already and want to modify the previous commit along with additional changes, you have a couple of options. However, keep in mind that modifying the commit history that has already been pushed can cause issues if other collaborators have based their work on those commits. It's generally recommended to avoid modifying the commit history that has been pushed unless you have a specific need.
+
+It is probaby better just to make a new commit.
+
+The other option is to use an interactive rebase.
+First use `git log --oneline` to see the hashes and the commits made so far on your current branch. Use `git rebase -i HEAD-n` to access that particular commit. That should open up an interactive bash window where you can specify what you want to do with that commit. Go for `edit` and make all the necessary changes. Finally, `git add`, `git commit --amend` to change that old commit and use `git rebase --continue` to apply the changes to all subsequent commits from then on. Finally, `git push --force` to rewrite the history anew.
+
+Another option is to `git checkout <hash>` to the last past commit that was correct. 
+Note: This gets you into a DETACHED HEAD state (usually the HEAD points to some branch), which means now any commits you will do will be orphaned as soon as you go back to some defined branch to work on. Orphaned branches get deleted by Git's garbaage collector.  
+So, after checkout you should do `git checkout -b new_branch_name` which creates a new branch and puts HEAD out of the DEATCHED state. This new branch will be in the same state as the last past commit that was correct. An alterative for the last command is `git switch -c new_branch_name`.
+
+### If the project is public and/or you don't mind extensive git history
+Then just use `git revert HEAD`
+
+### The cleanest method - that you probably shouldn't use
+Unless you're working on a simple personal project of course.
+`git reset --hard <hash>` resets everything to a particular commit and erase every subsequent thing. Hence, not good for shared publically shared repos. Use revert for those.
+
+### In summary
+If you've not pushed, use `git commit --amend`. Otherwise, you have 4 options if you make a mistake. Rewrite history with interactive rebase, make alternate history with checkouts, go back one step with revert or erase the thing with reset.
