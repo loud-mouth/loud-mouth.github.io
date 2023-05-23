@@ -84,15 +84,44 @@ public String speak(Animal animal)
     animal.speak(); 
 }" language="java"%}
 
-    Also, an abstract method has no body. Abstract methods means the class in which they're declared must also be abstract. Therefore, if you try to create a concrete (non-abstract) subclass of an abstract class, you WILL BE FORCED to override the abstract method. Otherwise, there's just no way. Neat-o.
+        Also, an abstract method has no body. Abstract methods means the class in which they're declared must also be abstract. Therefore, if you try to create a concrete (non-abstract) subclass of an abstract class, you WILL BE FORCED to override the abstract method. Otherwise, there's just no way. Neat-o.
+        </li>
+    <li>
+        Default Java annotation <code>@Override</code> can be used when overriding, although it's not mandatory. 
     </li>
-<li>
-    Default Java annotation <code>@Override</code> can be used when overriding, although it's not mandatory. 
-</li>
-<li>
-    All classes that don't explicitly extend a class, implicitly extend the class <code>Object</code>.
-    Objects of class <code>Object</code> are primarily used to write methods that will work on every class and also for thread synchronization.  
-</li>
+    <li>
+        All classes that don't explicitly extend a class, implicitly extend the class <code>Object</code>.
+        Objects of class <code>Object</code> are primarily used to write methods that will work on every class and also for thread synchronization.  
+    </li>
+    <li>
+        A subclass object can always be referred to by a reference of its superclass. It can also be put inside an ArrayList of it's superclass. But how to get it out?
+        To do that we need to take 
+        {% include codeblocks.html content="ArrayList<Object> myDogArrayList = new ArrayList<Object>();
+    Dog aDog = new Dog();
+    myDogArrayList.add(aDog);
+    // Add the Dog to the list.
+    // But what happens when you try to get the Dog object and assign it to a Dog reference?
+    Dog d = myDogArrayList.get(0); // ERROR" language="java" %}
+        What you can do instead is:
+        {% include codeblocks.html content="Object obj = myDogArrayList.get(0);
+        Dog d = (Dog) obj;" language="java" %}
+        But you can only do this if you're absolutely sure about the object you're pulling out. In case you're not, you can always you the <code>instanceOf</code> operator.
+    {% include codeblocks.html content="if(onj instanceOf Dog) {
+        Dog d = (Dog) obj;
+    }" language="java" %}
+    </li>
+    <li>
+        Interfaces are pure abstract classes. A class can extend one abstract class, implement many interfaces.
+    </li>
+    <li>
+        The call to super() constructor happens explicitly before anything else. 
+    </li>
+    <li>
+        Use this() to call a constructor from another overloaded constructor in the same class. The call to this() can be used only in a constructor, and must be the first statement in a constructor. A constructor can have a call to super() OR this(), but never both!
+    </li>
+    <li>
+        Static methods can and SHOULD be called with the class name. Needless to say, they cannot invoke non-static methods or use the class's non-static variables.
+    </li>
 </ul> 
 
 
