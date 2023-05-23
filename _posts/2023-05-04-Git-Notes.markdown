@@ -27,3 +27,12 @@ When you clone a repository using the git clone command, Git automatically adds 
 Working on 2 branches simultaneously means you'll have to switch back and forth between them sometimes. Here's how to do it.
 
 With `git stash` you can save your current progress in branch, which is something you're required to do before switching to a different branch. Use `git stash pop` to unstash the changes later when you come back.
+
+## For when you've committed too early (but not pushed) 
+In this case, you can keep making further edits in the same branch and at the end stage the current changes with `git add .` and use `git commit --amend` with new commit message to bundle all the changes together into a single commit.
+
+## Wait, you also pushed?
+If you have pushed the partial changes already and want to modify the previous commit along with additional changes, you have a couple of options. However, keep in mind that modifying the commit history that has already been pushed can cause issues if other collaborators have based their work on those commits. It's generally recommended to avoid modifying the commit history that has been pushed unless you have a specific need.
+
+It is probaby better just to make a new commit. The other option is to use an interactive rebase.
+
