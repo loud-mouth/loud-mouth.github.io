@@ -21,3 +21,9 @@ The command `git remote -v` can be used to check the list, and see which URLs ar
 Use `git remote add <name> <url>` to add a link.
 
 When you clone a repository using the git clone command, Git automatically adds a remote named origin that points to the repository you just cloned. By default, the origin remote points to the repository that you cloned from, and it is used as the default remote for fetching and pushing changes. When you run Git commands that reference origin, such as git fetch origin or git push origin, Git knows to use the URL of the remote repository that you cloned from. You can remove and rename these connections.
+
+
+## Git Stash
+Working on 2 branches simultaneously means you'll have to switch back and forth between them sometimes. Here's how to do it.
+
+With `git stash` you can save your current progress in branch, which is something you're required to do before switching to a different branch. Use `git stash pop` to unstash the changes later when you come back.
