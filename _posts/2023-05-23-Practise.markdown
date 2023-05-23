@@ -1,7 +1,9 @@
 ---
 layout: post
 author: Anant
-published: false
+# published: false
 ---
 
-Hello This is a practise blog. I have added a line.
+Hello This is a practise blog. I have added a line. HELLOOOOOOOO
+
+Now i have added a paragraph. I want this new line to be part of the last commit.
