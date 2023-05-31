@@ -186,3 +186,59 @@ Threads in java need an object that implements Runnable interface, as argument. 
 -  LinkedHashMap for Hash Table + Linked List 
 
 
+## Generics and Data Structures
+
+<ul>
+<li>
+    In generics, “extends” means “extends or implements”. So the code:
+    {% include codeblocks.html content="public static <T extends Comparable<? super T>> void sort(List<T> list)" language="java" %}
+    provides a sorting method that works for both classes that extend class Comparable or implements interface Comparable. Here, Comparable is an interface so really we only mean classes that implement Comparable. But, generally speaking when writing generics, extends means both extends/implements.
+</li>
+<li>
+    To implement Comparable in a class, there are 2 ways. 
+    <ol> 
+    <li>
+        First declare that your class <code>implements Comparable< T></code> and then create a <code>int compareTo(T o)</code> method (replace T with class name). The method returns a negative integer, zero, or a positive integer as this object is less than, equal to, or greater than the specified object. 
+    </li>
+    <li>
+        With the second method, you can define multiple methods. We use and implement a different imterface here called Comparator (to do so you have to implement a <code>int compare(T o1, T o2)</code> method) like this:
+        {% include codeblocks.html content="// create comparator class
+class ArtistCompare implements Comparator<Song> {
+    public int compare(Song one, Song two) {
+        return one.getArtist().compareTo(two.getArtist());
+    }
+}
+// original song class
+@Getter
+class Song {
+    public String artist;
+    public String genre;
+}
+// implement sort method in driver code
+public void driver() {
+    ArrayList<Song> songList = new ArrayList<Song>(); // the array of objects to be sorted
+    Collections.sort(songList, new ArtistCompare()); // Collections.sort() takes in an object of class that implements Comparator interface
+}
+" language="java"%} 
+    </li>
+    <li>
+        To implement a HashSet of your class (say, Song), implement the <code>public boolean equals(Object o)</code> and <code>public int hashCode()</code> methods.
+    </li>
+    </ol>
+</li>
+<li>
+    A method with argument <code>Animal[] animals</code> can be passed a dog array (a subclass array), but a method with argument <code>ArrayList< Animal> animals</code> CANNOT be passed a dog ArrayList (a subclass ArrayList). 
+    Imagine the method body included a line <code>animals.add(new Cat())</code>. This obviously shouldn't work. <br>
+    With simple arrays, this will result in a run time error because <u>Array types are checked again at runtime, but collection type checks happen only when you compile</u>. This error will go unnoticed by ArrayLists at runtime. Thus, a compilation error must be thrown here in their case. <br>
+    So, what do we do when we need to declare a method that can take in any subclass array list by declaring superclass arguments and work on it without intermixing types? <br> 
+    We can use <b><u>generics</u></b> like this:
+    {% include codeblocks.html content="public void takeAnimals(ArrayList<? extends Animal> animals) {
+    for(Animal a: animals) { a.eat(); }
+}" language="java"%}
+    Or its alternate form:
+    {% include codeblocks.html content="public <T extends Animal> void takeAnimals(ArrayList<T> list) {
+    for(Animal a: animals) { a.eat(); }
+}" language="java"%}
+    You can prefer the below one because you can re-use T internally.
+</li>
+</ul>
