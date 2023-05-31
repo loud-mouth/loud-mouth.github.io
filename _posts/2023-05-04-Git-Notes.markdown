@@ -22,6 +22,7 @@ Use `git remote add <name> <url>` to add a link.
 
 When you clone a repository using the git clone command, Git automatically adds a remote named origin that points to the repository you just cloned. By default, the origin remote points to the repository that you cloned from, and it is used as the default remote for fetching and pushing changes. When you run Git commands that reference origin, such as git fetch origin or git push origin, Git knows to use the URL of the remote repository that you cloned from. You can remove and rename these connections.
 
+Let's say 2 branches A and B are up-to-date with each other. I clone A and make changes and push. Then I create a pull request from A to B and merge the changes into B. Now B will be one commit ahead of A, even though they have the same data in them. In case you want to bring both at the same level, git pull branch B into your local system, checkout branch A and execute `git merge B` in branch A. Then push the changes to origin A.
 
 ## Git Stash
 Working on 2 branches simultaneously means you'll have to switch back and forth between them sometimes. Here's how to do it.

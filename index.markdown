@@ -19,7 +19,7 @@ permalink: /
 
 # Hi, I'm Anant Saxena.
 
-I'm a final year CS undergraduate at [Indian Institute of Technology, (BHU) Varanasi](https://iitbhu.ac.in/). I'm a backend dev who likes building customer-facing products that scale super good [(just like this.)](https://github.com/anantsxna/redis-rdb-compare)
+I'm a final year CS undergraduate at [Indian Institute of Technology, (BHU) Varanasi](https://iitbhu.ac.in/). I'm a developer who likes building customer-facing products that scale super good [(just like this.)](https://github.com/anantsxna/redis-rdb-compare)
 
 <!-- add a paragraph break -->
 

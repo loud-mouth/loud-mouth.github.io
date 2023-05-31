@@ -72,20 +72,17 @@ But for objects (reference types), value means the address value that the pointe
     </li>
     <li>
         To declare a class <code>abstract</code> is to tell the compiler that no objects must be instantiated with this class. However, reference types can be made and functions may be written with them to simplify code writing for its subclasses.
-        For example 
+        For example:
         {% include codeblocks.html content="abstract public class Animal{}
-
-public class Cat extends Animal {}
-
-public class Dog extends Animal {}
-
-// this function will work for both Cat and Dog objects
-public String speak(Animal animal)
+    public class Cat extends Animal {}
+    public class Dog extends Animal {}
+    // this function will work for both Cat and Dog objects
+    public String speak(Animal animal)
     animal.speak(); 
-}" language="java"%}
-
+}" language="java" 
+        %}
         Also, an abstract method has no body. Abstract methods means the class in which they're declared must also be abstract. Therefore, if you try to create a concrete (non-abstract) subclass of an abstract class, you WILL BE FORCED to override the abstract method. Otherwise, there's just no way. Neat-o.
-        </li>
+    </li>
     <li>
         Default Java annotation <code>@Override</code> can be used when overriding, although it's not mandatory. 
     </li>
@@ -97,18 +94,18 @@ public String speak(Animal animal)
         A subclass object can always be referred to by a reference of its superclass. It can also be put inside an ArrayList of it's superclass. But how to get it out?
         To do that we need to take 
         {% include codeblocks.html content="ArrayList<Object> myDogArrayList = new ArrayList<Object>();
-    Dog aDog = new Dog();
-    myDogArrayList.add(aDog);
-    // Add the Dog to the list.
-    // But what happens when you try to get the Dog object and assign it to a Dog reference?
-    Dog d = myDogArrayList.get(0); // ERROR" language="java" %}
+Dog aDog = new Dog();
+myDogArrayList.add(aDog);
+// Add the Dog to the list.
+// But what happens when you try to get the Dog object and assign it to a Dog reference?
+Dog d = myDogArrayList.get(0); // ERROR" language="java" %}
         What you can do instead is:
         {% include codeblocks.html content="Object obj = myDogArrayList.get(0);
-        Dog d = (Dog) obj;" language="java" %}
+    Dog d = (Dog) obj;" language="java" %}
         But you can only do this if you're absolutely sure about the object you're pulling out. In case you're not, you can always you the <code>instanceOf</code> operator.
-    {% include codeblocks.html content="if(onj instanceOf Dog) {
-        Dog d = (Dog) obj;
-    }" language="java" %}
+{% include codeblocks.html content="if(obj instanceOf Dog) {
+    Dog d = (Dog) obj;
+}" language="java" %}
     </li>
     <li>
         Interfaces are pure abstract classes. A class can extend one abstract class, implement many interfaces.
@@ -121,6 +118,16 @@ public String speak(Animal animal)
     </li>
     <li>
         Static methods can and SHOULD be called with the class name. Needless to say, they cannot invoke non-static methods or use the class's non-static variables.
+    </li>
+    <li>
+        For a time-stamp of “now”, use Date. But for everything else, use Calendar.
+    </li>
+    <li>
+        If you don't want to try-catch any risky thing that happens inside your method, you can declare the entire method risky as follows:
+        {% include codeblocks.html content="public String speak() throws Exception {}" %}
+    </li>
+    <li>
+        Variables marked <code>transient</code> will be skipped during serialization. Also, if we serialize 2 objects, say CatA and CatB both have a common owner object inside them, the owner object will be serialized only once. 
     </li>
 </ul> 
 
@@ -157,3 +164,81 @@ Equality Comparison:
 Primitives: Primitives are compared using the == operator, which compares their values.
 Objects: Objects are compared using the equals() method, which compares their content or reference equality.
 It's important to note that Java 5 introduced the concept of autoboxing and unboxing, which allows automatic conversion between primitives and their corresponding wrapper classes, making the usage more convenient in some cases.
+
+## Threads in Java
+
+Threads in java need an object that implements Runnable interface, as argument. To implement Runnable interface in a class, you need to define run() function in it.
+
+<li>
+    Use the synchronized keyword to modify a method so that only one thread at a time can access it.
+</li>
+<li>
+    Object locks come into play only when there are synchronized methods. When an object has one or more synchronized methods, a thread can enter a synchronized method only if the thread can get the key to the object’s lock!
+    The locks are not per method, they are per object. 
+</li>
+
+
+## Data Structures in Java
+
+-  ArrayList<T> for C++ arrays 
+-  TreeSet for Binary Seach Trees
+-  HashMap for Hash Tables (like unordered_multimap)
+-  LinkedHashMap for Hash Table + Linked List 
+
+
+## Generics and Data Structures
+
+<ul>
+<li>
+    In generics, “extends” means “extends or implements”. So the code:
+    {% include codeblocks.html content="public static <T extends Comparable<? super T>> void sort(List<T> list)" language="java" %}
+    provides a sorting method that works for both classes that extend class Comparable or implements interface Comparable. Here, Comparable is an interface so really we only mean classes that implement Comparable. But, generally speaking when writing generics, extends means both extends/implements.
+</li>
+<li>
+    To implement Comparable in a class, there are 2 ways. 
+    <ol> 
+    <li>
+        First declare that your class <code>implements Comparable< T></code> and then create a <code>int compareTo(T o)</code> method (replace T with class name). The method returns a negative integer, zero, or a positive integer as this object is less than, equal to, or greater than the specified object. 
+    </li>
+    <li>
+        With the second method, you can define multiple methods. We use and implement a different imterface here called Comparator (to do so you have to implement a <code>int compare(T o1, T o2)</code> method) like this:
+        {% include codeblocks.html content="// create comparator class
+class ArtistCompare implements Comparator<Song> {
+    public int compare(Song one, Song two) {
+        return one.getArtist().compareTo(two.getArtist());
+    }
+}
+// original song class
+@Getter
+class Song {
+    public String artist;
+    public String genre;
+}
+// implement sort method in driver code
+public void driver() {
+    ArrayList<Song> songList = new ArrayList<Song>(); // the array of objects to be sorted
+    Collections.sort(songList, new ArtistCompare()); // Collections.sort() takes in an object of class that implements Comparator interface
+}
+" language="java"%} 
+    </li>
+    <li>
+        To implement a HashSet of your class (say, Song), implement the <code>public boolean equals(Object o)</code> and <code>public int hashCode()</code> methods.
+    </li>
+    </ol>
+</li>
+<li>
+    A method with argument <code>Animal[] animals</code> can be passed a dog array (a subclass array), but a method with argument <code>ArrayList< Animal> animals</code> CANNOT be passed a dog ArrayList (a subclass ArrayList). 
+    Imagine the method body included a line <code>animals.add(new Cat())</code>. This obviously shouldn't work. <br>
+    With simple arrays, this will result in a run time error because <u>Array types are checked again at runtime, but collection type checks happen only when you compile</u>. This error will go unnoticed by ArrayLists at runtime. Thus, a compilation error must be thrown here in their case. <br>
+    So, what do we do when we need to declare a method that can take in any subclass array list by declaring superclass arguments and work on it without intermixing types? <br> 
+    We can use <b><u>generics</u></b> like this:
+    {% include codeblocks.html content="public void takeAnimals(ArrayList<? extends Animal> animals) {
+    for(Animal a: animals) { a.eat(); }
+}" language="java"%}
+    Or its alternate form:
+    {% include codeblocks.html content="public <T extends Animal> void takeAnimals(ArrayList<T> list) {
+    for(Animal a: animals) { a.eat(); }
+}" language="java"%}
+    You can prefer the below one because you can re-use T internally.
+</li>
+</ul>

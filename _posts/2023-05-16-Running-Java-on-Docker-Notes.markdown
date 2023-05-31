@@ -7,6 +7,10 @@ Making sure I do not have to wonder what Docker is anymore.
 
 The whole functioning of Docker is somewhere between locally running and VMs. 
 
+Note: Docker Desktop natively provides docker-cli. You might have to `export PATH=$PATH:/Applications/Docker.app/Contents/Resources/bin` to get the command registered with your terminal.
+
+Also, Note: `docker-compose` has a second version, a.k.a, `docker compose` now, which has the added benefit of natively being packed with your Docker Desktop installation. 
+
 ### Docker Containers, Images
 Containers are isolated environments that include the source code, the software needed to run it as well as a defined OS.
 
